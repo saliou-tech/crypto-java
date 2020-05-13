@@ -1,163 +1,163 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
-    <a class="navbar-brand" href="#">File</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">chiffrement<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Dechiffrement</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Signature</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Verification</a>
-          </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">Aide</a>
-          </li>
-         
-       <br><br>
-        
-      </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
+  <a class="navbar-brand" href="#">File</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">chiffrement<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Dechiffrement</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Signature</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Verification</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Aide</a>
+      </li>
+
+      <br><br>
+
+    </ul>
+    <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Aide</button>
       </form> -->
-      <br><br>
-    </div>
-    <br><br><br>
-  </nav>
-  <div class="row">
-      <div class="col-md-12">
+    <br><br>
+  </div>
+  <br><br><br>
+</nav>
+<div class="row">
+  <div class="col-md-12">
     <mat-tab-group>
-        <mat-tab label="chiffrement"> 
-            
-                <div class="col-md-6 offset-md-4">
-                    <br><br>
-                    <h2>Generer votre paire de cle avant de proceder au chiffrement</h2>
-                    <mat-accordion>
-                        <mat-expansion-panel>
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                              Génrer votre paire de clé
-                            </mat-panel-title>
-                            <mat-panel-description>
-                              Choisisez les parametres de cla clé algorithme taille de cle 
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                      
-                          <mat-form-field>
-                            <mat-label>Algorithme</mat-label>
-                            <mat-select>
-                              <mat-option *ngFor="let food of foods" [value]="food.value">
-                                {{food.viewValue}}
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          
-                          <mat-form-field>
-                            <mat-label>Provider</mat-label>
-                            <mat-select>
-                              <mat-option *ngFor="let food of provider" [value]="food.value">
-                                {{food.viewValue}}
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          
-                          <mat-form-field>
-                            <mat-label>Taille cle</mat-label>
-                            <mat-select>
-                              <mat-option *ngFor="let food of taille" [value]="food.value">
-                                {{food.viewValue}}
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          <div class="">
-                            <button class="btn btn-primary  btn-block">generer</button>
-                          </div>
-                          <!-- <mat-form-field>
+      <mat-tab label="chiffrement">
+
+        <div class="col-md-6 offset-md-4">
+          <br><br>
+          <h2>Generer votre paire de cle avant de proceder au chiffrement</h2>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Génrer votre paire de clé
+                </mat-panel-title>
+                <mat-panel-description>
+                  Choisisez les parametres de cla clé algorithme taille de cle
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
+              <mat-form-field>
+                <mat-label>Algorithme</mat-label>
+                <mat-select [(ngModel)]="this.parametre.algorithme" name="algorithme">
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Provider</mat-label>
+                <mat-select [(ngModel)]="this.parametre.provider" name="provider" >
+                  <mat-option *ngFor="let food of provider" [value]="food.value" >
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Taille cle</mat-label>
+                <mat-select [(ngModel)]="this.parametre.taille" name="taille">
+                  <mat-option *ngFor="let food of taille" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="">
+                <button class="btn btn-primary  btn-block" (click)="generateKey()" *ngIf="!this.generate">generer</button>
+                <button class="btn btn-success  btn-block" (click)="generateKey()" *ngIf="this.generate">chargement...</button>
+              </div>
+              <!-- <mat-form-field>
                             <mat-label>First name</mat-label>
                             <input matInput>
                           </mat-form-field> -->
-                      
-                          <!-- <mat-form-field>
+
+              <!-- <mat-form-field>
                             <mat-label>Age</mat-label>
                             <input matInput type="number" min="1">
                           </mat-form-field> -->
-                        </mat-expansion-panel>
-                        <br><br>
-                        <h2>Chiffrer un texte </h2>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                              Chiffrer un message 
-                            </mat-panel-title>
-                            <mat-panel-description>
-                              Chiffrer votre texte en choississant votre algorithme
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Message</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>      
-                          <div class="">
-                            <button class="btn btn-primary  btn-block">Chiffrer</button>
-                          </div>   
-                          <br> 
-                          <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Message Chiffré</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>  
-                                     
-                        </mat-expansion-panel>
-                        <br>
-                        <h2>Chiffrer vos fichiers </h2>
-                        <br>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                        (closed)="panelOpenState = false">
-     <mat-expansion-panel-header>
-       <mat-panel-title>
-         Chiffrer un message 
-       </mat-panel-title>
-       <mat-panel-description>
-         Chiffrer votre texte en choississant votre algorithme
-       </mat-panel-description>
-     </mat-expansion-panel-header>
-     <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-        </div>
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-        </div>
-      </div>      
-     <div class="">
-       <button class="btn btn-primary  btn-block">Chiffrer</button>
-     </div>   
-     <br> 
-     
-                
-   </mat-expansion-panel>
-                      </mat-accordion>
-                      
-                </div>
-              
-             </mat-tab>
-        <mat-tab label="Dechiffrement"> Content 2 </mat-tab>
-        <mat-tab label="Signature"> Content 3 </mat-tab>
-        <mat-tab label="Verification"> Content 4 </mat-tab>
-      </mat-tab-group>
+            </mat-expansion-panel>
+            <br><br>
+            <h2>Chiffrer un texte </h2>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Chiffrer un message
+                </mat-panel-title>
+                <mat-panel-description>
+                  Chiffrer votre texte en choississant votre algorithme
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Message</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="">
+                <button class="btn btn-primary  btn-block">Chiffrer</button>
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Message Chiffré</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
 
-    </div>
+            </mat-expansion-panel>
+            <br>
+            <h2>Chiffrer vos fichiers </h2>
+            <br>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Chiffrer un message
+                </mat-panel-title>
+                <mat-panel-description>
+                  Chiffrer votre texte en choississant votre algorithme
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+              </div>
+              <div class="">
+                <button class="btn btn-primary  btn-block">Chiffrer</button>
+              </div>
+              <br>
+
+
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Dechiffrement"> Content 2 </mat-tab>
+      <mat-tab label="Signature"> Content 3 </mat-tab>
+      <mat-tab label="Verification"> Content 4 </mat-tab>
+    </mat-tab-group>
+
   </div>
-  
+</div>

@@ -7,11 +7,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {MatTabsModule} from '@angular/material/tabs';
+import { FormsModule } from '@angular/forms';
 
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import { CryptoService } from './crypto.service';
+import {  HttpClientModule  } from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 
 
@@ -22,6 +28,9 @@ import {MatButtonModule} from '@angular/material/button';
     AcceuilComponent
   ],
   imports: [
+    MatSnackBarModule,
+    HttpClientModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -31,7 +40,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatSelectModule
     //ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [CryptoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

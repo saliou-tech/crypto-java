@@ -95,6 +95,23 @@
                             <input matInput type="number" min="1">
                           </mat-form-field> -->
             </mat-expansion-panel>
+            <br>
+            
+            <div *ngIf="this.showCle">
+            <h2 class="text-success">Voir ma paire de cle </h2>
+            <br>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Voir votre clé publique
+                </mat-panel-title>
+                <mat-panel-description>
+                  Utiliser la clé publique pour chiffrer les message et la clé privé pour déchiffrer
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <br>
+            </mat-expansion-panel>
+          </div>
             <br><br>
             <h2>Chiffrer un texte </h2>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -149,6 +166,7 @@
 
 
             </mat-expansion-panel>
+            
           </mat-accordion>
 
         </div>

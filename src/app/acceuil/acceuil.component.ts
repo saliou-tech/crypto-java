@@ -13,6 +13,7 @@ interface Food {
 })
 export class AcceuilComponent implements OnInit {
   generate =false;
+  showCle = false;
   durationInSeconds = 5;
   panelOpenState = false;
   parametre =  {
@@ -71,6 +72,7 @@ export class AcceuilComponent implements OnInit {
       if(error.status==200){
         this.generate =false
         this.openSnackBar()
+        this.showCle =true
 
       }
     })

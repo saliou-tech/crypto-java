@@ -98,20 +98,41 @@
             <br>
             
             <div *ngIf="this.showCle">
-            <h2 class="text-success">Voir ma paire de cle </h2>
-            <br>
+              <div class="alert alert-success" role="alert">
+              votre paire de clé a bien été généré
+              </div>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
-                <mat-panel-title>
+                <mat-panel-title  class="text-success">
                   Voir votre clé publique
                 </mat-panel-title>
                 <mat-panel-description>
                   Utiliser la clé publique pour chiffrer les message et la clé privé pour déchiffrer
                 </mat-panel-description>
               </mat-expansion-panel-header>
+              <mat-toolbar> <p>{{this.erreur.error.text}} </p>  </mat-toolbar>
               <br>
             </mat-expansion-panel>
           </div>
+      <!-- en cas erreur -->
+          <div *ngIf="this.showerror">
+            <div class="alert alert-danger" role="alert">
+              Une erreur est survenue defiler pour plus de détaille
+            </div>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="text-danger">
+                  erreur lors de la génération
+                </mat-panel-title>
+                <mat-panel-description>
+                  
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-toolbar>{{this.message}}</mat-toolbar>
+              <br>
+            </mat-expansion-panel>
+          </div>
+          
             <br><br>
             <h2>Chiffrer un texte </h2>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">

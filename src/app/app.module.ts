@@ -16,6 +16,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { CryptoService } from './crypto.service';
 import {  HttpClientModule  } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
 
 
 
@@ -28,6 +33,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AcceuilComponent
   ],
   imports: [
+    MatToolbarModule,
+    MatMenuModule,
+    MatTreeModule,
     MatSnackBarModule,
     HttpClientModule,
     FormsModule,

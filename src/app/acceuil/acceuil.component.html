@@ -171,7 +171,8 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.parametrechiffrement.message" name="message"></textarea>
               </div>
               <div class="">
-                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()">Chiffrer</button>
+                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="!this.generate">Chiffrer</button>
+                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="this.generate">chargement..</button>
               </div>
               <br>
               <div class="form-group">

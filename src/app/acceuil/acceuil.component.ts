@@ -203,6 +203,7 @@ export class AcceuilComponent implements OnInit {
       (error) => {
         console.log('error', error);
         this.erreur = error;
+        this.generate = false;
 
         if (error.status == 200) {
           if (
@@ -230,6 +231,7 @@ export class AcceuilComponent implements OnInit {
   }
 
   chiffrementSymetriqueMessage() {
+    this.generate = true;
     console.log(this.parametrechiffrement)
     this.api.ChiffrementSymetrique(this.parametrechiffrement).subscribe(
       (response) => {
@@ -241,6 +243,7 @@ export class AcceuilComponent implements OnInit {
         console.log('error', error);
         this.erreur = error;
         this.messagechiffre = this.erreur.error.text;
+        this.generate = false;
         console.log(this.messagechiffre)
       },)
 

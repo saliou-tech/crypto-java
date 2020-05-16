@@ -19,6 +19,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+
+
 
 
 
@@ -33,6 +37,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AcceuilComponent
   ],
   imports: [
+    MatRadioModule,
+    MatCheckboxModule,
     MatToolbarModule,
     MatMenuModule,
     MatTreeModule,

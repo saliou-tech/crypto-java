@@ -51,10 +51,16 @@
                   Génrer votre paire de clé
                 </mat-panel-title>
                 <mat-panel-description>
-                  Choisisez les parametres de cla clé algorithme taille de cle
+                  Choisisez les parametres de cla clé algorithme taille de cle  <br>et le sytéme de chiffrement
                 </mat-panel-description>
               </mat-expansion-panel-header>
-
+              <section class="example-section">
+                <label class="example-margin">Align:</label>
+              <mat-radio-group class="example-section" [(ngModel)]="labelPosition">
+                <mat-radio-button  class="example-margin" value = "symetique" (click)="ModeChiffrementS()">Clé symetique</mat-radio-button>
+                <mat-radio-button  class="example-margin"  value="asymetrique" (click)="ModeChiffrementA()">Clé asymetrique</mat-radio-button>
+                </mat-radio-group>
+              </section>
               <mat-form-field>
                 <mat-label>Algorithme</mat-label>
                 <mat-select [(ngModel)]="this.parametre.algorithme" name="algorithme">
@@ -101,6 +107,7 @@
               <div class="alert alert-success" role="alert">
               votre paire de clé a bien été généré
               </div>
+              <div *ngIf="this.indeterminate">
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title  class="text-success">
@@ -110,9 +117,24 @@
                   Utiliser la clé publique pour chiffrer les message et la clé privé pour déchiffrer
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <mat-toolbar> <p>{{this.erreur.error.text}} </p>  </mat-toolbar>
+              <mat-toolbar  > <p class="col-md-4"> clepublique: <br> {{this.clepublique}}  </p>  </mat-toolbar>
               <br>
             </mat-expansion-panel>
+          </div>
+          <div *ngIf="this.checked">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title  class="text-success">
+                  Voir votre clé privé
+                </mat-panel-title>
+                <mat-panel-description>
+                Pour le chiffrement asymétrique une seule clé est utiliseé pour le chiffrement et le Dechiffrement 
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-toolbar> <p> cleprivé: {{this.cleprive}} </p>  </mat-toolbar>
+              <br>
+            </mat-expansion-panel>
+          </div>
           </div>
       <!-- en cas erreur -->
           <div *ngIf="this.showerror">
@@ -146,15 +168,15 @@
               </mat-expansion-panel-header>
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.parametrechiffrement.message" name="message"></textarea>
               </div>
               <div class="">
-                <button class="btn btn-primary  btn-block">Chiffrer</button>
+                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()">Chiffrer</button>
               </div>
               <br>
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Message Chiffré</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  [(ngModel)]="this.messagechiffre" name="messagechiffre">{{this.messagechiffre}}</textarea>
               </div>
 
             </mat-expansion-panel>

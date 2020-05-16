@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CryptoService {
-// baseurl= "https://apicryptojava.herokuapp.com/api";
-  baseurl = 'http://localhost:8080/api';
+ baseurl= "https://apicryptojava.herokuapp.com/api";
+ // baseurl = 'http://localhost:8080/api';
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'  });
 
   constructor(private http: HttpClient) { }

@@ -87,6 +87,7 @@ export class AcceuilComponent implements OnInit {
 
   ModeChiffrementS(): boolean {
     this.checked = true;
+    this.indeterminate =false;
     this.foods = [
       { value: 'DES', viewValue: 'DES' },
       { value: 'DES', viewValue: '3DES' },
@@ -105,6 +106,7 @@ export class AcceuilComponent implements OnInit {
   }
   ModeChiffrementA(): boolean {
     this.indeterminate = true;
+    this.checked =false;
     console.log(this.indeterminate);
     this.foods = [
       { value: 'RSA', viewValue: 'RSA' },

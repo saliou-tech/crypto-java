@@ -191,10 +191,11 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  Chiffrer un message
+                  Chiffrer un fichier
                 </mat-panel-title>
+                Choisir le fichier à chiffrer
                 <mat-panel-description>
-                  Chiffrer votre texte en choississant votre algorithme
+                le fichier chiffre sera stocke dans votre PC
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <div class="input-group mb-3">
@@ -203,12 +204,15 @@
                 </div>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01">
+                    aria-describedby="inputGroupFileAddon01" name="chemin"  [(ngModel)] ="this.url.chemin" >
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
               </div>
-              <div class="">
-                <button class="btn btn-primary  btn-block">Chiffrer</button>
+
+              <div >
+                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueFichier()" *ngIf="!this.generate">Chiffrement asymetrique</button>
+
+                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueFichier()" *ngIf="this.generate">chargement..</button>
               </div>
               <br>
 

@@ -25,7 +25,14 @@ export class AcceuilComponent implements OnInit {
   showerror = false;
   durationInSeconds = 5;
   panelOpenState = false;
+  url;
  
+  params={
+    taille:'',
+    algorithme:'',
+    file:''
+
+  };
   parametre = {
     algorithme: '',
     provider: '',
@@ -37,6 +44,7 @@ export class AcceuilComponent implements OnInit {
     algorithme:this.parametre.algorithme
 
   }
+  
   // selected = 'option2';
 
   foods: Food[] = [
@@ -69,6 +77,9 @@ export class AcceuilComponent implements OnInit {
       algorithme: '',
       provider: '',
       taille: '',
+    };
+    this.url={
+      chemin:''
     };
 
     // this.checked = this.ModeChiffrementS()
@@ -238,6 +249,7 @@ export class AcceuilComponent implements OnInit {
     this.api.ChiffrementSymetrique(this.parametrechiffrement).subscribe(
       (response) => {
         console.log(response);
+        
        
         
       },
@@ -250,4 +262,26 @@ export class AcceuilComponent implements OnInit {
       },)
 
   }
+  chiffrementSymetriqueFichier() {
+    this.params={
+      taille:this.parametre.taille,
+      algorithme:this.parametre.algorithme,
+      file:this.url.chemin
+    }
+    console.log(this.params);
+    this.api.ChiffrementFichierSymetrique(this.params).subscribe(
+      (response) => {
+        console.log(response);
+        
+      },
+      (error) => {
+        console.log('error', error);
+        this.erreur = error;
+        this.messagechiffre = this.erreur.error.text;
+        this.generate = false;
+        console.log(this.messagechiffre)
+      },)
+
+  }
+
 }

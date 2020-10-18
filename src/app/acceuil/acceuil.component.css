@@ -19,4 +19,11 @@
   .example-margin {
     margin: 0 10px;
   }
+  .large{
+    width: 100%;
+  }
+  .color{
+    color: #ffffff;
+    background-color: #B0F2B6;
+  }
   

@@ -47,5 +47,13 @@ export class CryptoService {
     return this.http.post<any>(this.baseurl + '/signature' , JSON.stringify(url)  , { headers: this.httpHeaders});
   }
 
+  signatureDigitaleFchier(url): Observable<any> {
+    // this.url = url.replace(/^.*\\/, '');
+
+    console.log( this.baseurl + '/signaturefichier' + JSON.stringify(url) + '/'  , { headers: this.httpHeaders} );
+
+    return this.http.post<any>(this.baseurl + '/signaturefichier' , JSON.stringify(url)  , { headers: this.httpHeaders});
+  }
+
 
 }

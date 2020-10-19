@@ -20,6 +20,7 @@ export class AcceuilComponent implements OnInit {
   clepublique: String;
   messagechiffre: String;
   erreur;
+  iserror;
   message;
   generate = false;
   showCle = false;
@@ -36,7 +37,7 @@ export class AcceuilComponent implements OnInit {
     algorithme: '',
     file: '',
   };
- 
+
   parametre = {
     algorithme: '',
     provider: '',
@@ -46,15 +47,22 @@ export class AcceuilComponent implements OnInit {
     clepriv: this.cleprive,
     message: '',
     algorithme: this.parametre.algorithme,
-  }; 
+  };
   paramsignature = {
     hashingAlgo: '',
     signingAlgo: '',
     algorithme: this.parametre.algorithme,
-    clepriv:this.cleprive,
-    message:''
+    clepriv: this.cleprive,
+    message: '',
   };
 
+  paramsignaturefichier = {
+    hashingAlgo: '',
+    signingAlgo: '',
+    algorithme: this.parametre.algorithme,
+    taille: '',
+    file: '',
+  };
 
   // selected = 'option2';
 
@@ -73,14 +81,11 @@ export class AcceuilComponent implements OnInit {
     { value: 'MD5withDSA', viewValue: 'MD5withDSA' },
     { value: 'SHA1withDSA', viewValue: 'SHA1withDSA' },
     { value: 'SHA256withDSA', viewValue: 'SHA256withDSA' },
-   
   ];
   hashingAlgo: Food[] = [
     { value: 'MD5', viewValue: 'MD5' },
     { value: 'SHA1', viewValue: 'SHA1' },
     { value: 'SHA256', viewValue: 'SHA256' },
-   
-   
   ];
   provider: Food[] = [
     { value: 'SUN', viewValue: 'SUN' },
@@ -112,8 +117,15 @@ export class AcceuilComponent implements OnInit {
       hashingAlgo: '',
       signingAlgo: '',
       algorithme: '',
-      clepriv:'',
-      message:''
+      clepriv: '',
+      message: '',
+    };
+    this.paramsignaturefichier = {
+      hashingAlgo: '',
+      signingAlgo: '',
+      algorithme: this.parametre.algorithme,
+      taille: '',
+      file: '',
     };
 
     // this.checked = this.ModeChiffrementS()
@@ -129,6 +141,15 @@ export class AcceuilComponent implements OnInit {
       }
     );
   }
+  openSnackBar4() {
+    this._snackBar.open(
+      'le pair de cle ,les empreintes et la signature sont stockes dans le meme dossier que le fichier',
+      '',
+      {
+        duration: this.durationInSeconds * 1000,
+      }
+    );
+  }
 
   openSnackBar2() {
     this._snackBar.open(
@@ -138,6 +159,11 @@ export class AcceuilComponent implements OnInit {
         duration: this.durationInSeconds * 10000,
       }
     );
+  }
+  openSnackBar3() {
+    this._snackBar.open('Message hache et signe avec success', '', {
+      duration: this.durationInSeconds * 10000,
+    });
   }
 
   ModeChiffrementS(): boolean {
@@ -344,7 +370,7 @@ export class AcceuilComponent implements OnInit {
     );
   }
   loadKeys() {
-    console.log(this.parametrechiffrement.algorithme)
+    console.log(this.parametrechiffrement.algorithme);
     if (
       this.parametre.algorithme == 'DES' ||
       this.parametre.algorithme == '3DES' ||
@@ -354,36 +380,63 @@ export class AcceuilComponent implements OnInit {
       this.showClesignature = false;
       this.indeterminatesignature = false;
       console.log((this.showClesignatureerror = true));
-      
-    } 
-    else {
-      console.log(this.paramsignature)
+    } else {
+      console.log(this.paramsignature);
       this.showClesignature = true;
       this.indeterminatesignature = true;
       this.showClesignatureerror = false;
-
     }
   }
-  signerMessage(){
-    this.paramsignature.algorithme=this.parametre.algorithme
-    this.paramsignature.clepriv=this.cleprive
-    console.log(this.paramsignature)
+  signerMessage() {
+    this.paramsignature.algorithme = this.parametre.algorithme;
+    this.paramsignature.clepriv = this.cleprive;
+    console.log(this.paramsignature);
     this.api.signatureDigitaleMessage(this.paramsignature).subscribe(
       (response) => {
         //this.showfilesuccess = true;
 
         console.log(response);
-        
       },
       (error) => {
         this.generate = false;
 
         console.log('error', error);
-        this.erreur = error;
+        if (error.status == 500) {
+          this.iserror = true;
+          this.erreur = error.error.message;
+        }
+        if (error.status == 200) {
+          this.iserror = false;
 
-        this.messagechiffre = this.erreur.error.text;
-        console.log(this.messagechiffre);
-        this.openSnackBar2();
+          this.messagechiffre = error.error.text;
+          console.log(this.messagechiffre);
+          this.openSnackBar3();
+        }
+      }
+    );
+  }
+  SignatureDigitaleFichier() {
+    this.generate = true;
+    this.paramsignaturefichier.algorithme = this.parametre.algorithme;
+    this.paramsignaturefichier.hashingAlgo = this.paramsignature.hashingAlgo;
+    this.paramsignaturefichier.signingAlgo = this.paramsignature.signingAlgo;
+    this.paramsignaturefichier.taille = this.parametre.taille;
+    console.log(this.paramsignaturefichier);
+    this.api.signatureDigitaleFchier(this.paramsignaturefichier).subscribe(
+      (response) => {
+        //this.showfilesuccess = true;
+
+        console.log(response);
+        this.generate = false;
+      },
+      (error) => {
+        this.generate = false;
+
+        console.log('error', error);
+
+        if (error.status == 200) {
+          this.openSnackBar4();
+        }
       }
     );
   }

@@ -51,14 +51,16 @@
                   Génrer votre paire de clé
                 </mat-panel-title>
                 <mat-panel-description>
-                  Choisisez les parametres de cla clé algorithme taille de cle  <br>et le sytéme de chiffrement
+                  Choisisez les parametres de cla clé algorithme taille de cle <br>et le sytéme de chiffrement
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <section class="example-section">
                 <label class="example-margin">Align:</label>
-              <mat-radio-group class="example-section" [(ngModel)]="labelPosition">
-                <mat-radio-button  class="example-margin" value = "symetique" (click)="ModeChiffrementS()">Clé symetique</mat-radio-button>
-                <mat-radio-button  class="example-margin"  value="asymetrique" (click)="ModeChiffrementA()">Clé asymetrique</mat-radio-button>
+                <mat-radio-group class="example-section" [(ngModel)]="labelPosition">
+                  <mat-radio-button class="example-margin" value="symetique" (click)="ModeChiffrementS()">Clé symetique
+                  </mat-radio-button>
+                  <mat-radio-button class="example-margin" value="asymetrique" (click)="ModeChiffrementA()">Clé
+                    asymetrique</mat-radio-button>
                 </mat-radio-group>
               </section>
               <mat-form-field>
@@ -72,8 +74,8 @@
 
               <mat-form-field>
                 <mat-label>Provider</mat-label>
-                <mat-select [(ngModel)]="this.parametre.provider" name="provider" >
-                  <mat-option *ngFor="let food of provider" [value]="food.value" >
+                <mat-select [(ngModel)]="this.parametre.provider" name="provider">
+                  <mat-option *ngFor="let food of provider" [value]="food.value">
                     {{food.viewValue}}
                   </mat-option>
                 </mat-select>
@@ -88,8 +90,10 @@
                 </mat-select>
               </mat-form-field>
               <div class="">
-                <button class="btn btn-primary  btn-block" (click)="generateKey()" *ngIf="!this.generate">generer</button>
-                <button class="btn btn-success  btn-block" (click)="generateKey()" *ngIf="this.generate">chargement...</button>
+                <button class="btn btn-primary  btn-block" (click)="generateKey()"
+                  *ngIf="!this.generate">generer</button>
+                <button class="btn btn-success  btn-block" (click)="generateKey()"
+                  *ngIf="this.generate">chargement...</button>
               </div>
               <!-- <mat-form-field>
                             <mat-label>First name</mat-label>
@@ -102,63 +106,67 @@
                           </mat-form-field> -->
             </mat-expansion-panel>
             <br>
-            
+
             <div *ngIf="this.showCle">
               <div class="alert alert-success" role="alert">
-              votre paire de clé a bien été généré
+                votre paire de clé a bien été généré
               </div>
               <div *ngIf="this.indeterminate">
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title  class="text-success">
-                  Voir votre clé publique
-                </mat-panel-title>
-                <mat-panel-description>
-                  Utiliser la clé publique pour chiffrer les message et la clé privé pour déchiffrer
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <mat-toolbar  > <p class="col-md-4"> clepublique: <br> {{this.clepublique}}  </p>  </mat-toolbar> <br>
-              <!-- <mat-toolbar  > <p class="col-md-4"> cleprive: <br> {{this.cleprive}}  </p>  </mat-toolbar> <br> -->
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="text-success">
+                      Voir votre clé publique
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Utiliser la clé publique pour chiffrer les message et la clé privé pour déchiffrer
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-toolbar>
+                    <p class="col-md-4"> clepublique: <br> {{this.clepublique}} </p>
+                  </mat-toolbar> <br>
+                  <!-- <mat-toolbar  > <p class="col-md-4"> cleprive: <br> {{this.cleprive}}  </p>  </mat-toolbar> <br> -->
 
-        
 
-              <br>
-            </mat-expansion-panel>
-          </div>
-          <div *ngIf="this.checked">
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title  class="text-success">
-                  Voir votre clé privé
-                </mat-panel-title>
-                <mat-panel-description>
-                Pour le chiffrement asymétrique une seule clé est utiliseé pour le chiffrement et le Dechiffrement 
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <mat-toolbar> <p> cleprivé: {{this.cleprive}} </p>  </mat-toolbar>
-              <br>
-            </mat-expansion-panel>
-          </div>
-          </div>
-      <!-- en cas erreur -->
-          <div *ngIf="this.showerror">
-            <div class="alert alert-danger" role="alert">
-              Une erreur est survenue defiler pour plus de détaille
+
+                  <br>
+                </mat-expansion-panel>
+              </div>
+              <div *ngIf="this.checked">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="text-success">
+                      Voir votre clé privé
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Pour le chiffrement asymétrique une seule clé est utiliseé pour le chiffrement et le Dechiffrement
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-toolbar>
+                    <p> cleprivé: {{this.cleprive}} </p>
+                  </mat-toolbar>
+                  <br>
+                </mat-expansion-panel>
+              </div>
             </div>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title class="text-danger">
-                  erreur lors de la génération
-                </mat-panel-title>
-                <mat-panel-description>
-                  
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <mat-toolbar>{{this.message}}</mat-toolbar>
-              <br>
-            </mat-expansion-panel>
-          </div>
-          
+            <!-- en cas erreur -->
+            <div *ngIf="this.showerror">
+              <div class="alert alert-danger" role="alert">
+                Une erreur est survenue defiler pour plus de détaille
+              </div>
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-danger">
+                    erreur lors de la génération
+                  </mat-panel-title>
+                  <mat-panel-description>
+
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-toolbar>{{this.message}}</mat-toolbar>
+                <br>
+              </mat-expansion-panel>
+            </div>
+
             <br><br>
             <h2>Chiffrer un texte </h2>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -172,20 +180,26 @@
               </mat-expansion-panel-header>
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.parametrechiffrement.message" name="message"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  [(ngModel)]="this.parametrechiffrement.message" name="message"></textarea>
               </div>
               <div *ngIf="this.checked">
-                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="!this.generate">Chiffrement symetrique</button>
-                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="this.generate">chargement..</button>
+                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                  *ngIf="!this.generate">Chiffrement symetrique</button>
+                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                  *ngIf="this.generate">chargement..</button>
               </div>
               <div *ngIf="!this.checked">
-                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="!this.generate">Chiffrement asymetrique</button>
-                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="this.generate">chargement..</button>
+                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                  *ngIf="!this.generate">Chiffrement asymetrique</button>
+                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                  *ngIf="this.generate">chargement..</button>
               </div>
               <br>
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Message Chiffré</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  [(ngModel)]="this.messagechiffre" name="messagechiffre">{{this.messagechiffre}}</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  [(ngModel)]="this.messagechiffre" name="messagechiffre">{{this.messagechiffre}}</textarea>
               </div>
 
             </mat-expansion-panel>
@@ -199,7 +213,7 @@
                 </mat-panel-title>
                 Choisir le fichier à chiffrer
                 <mat-panel-description>
-                le fichier chiffre sera stocke dans votre PC
+                  le fichier chiffre sera stocke dans votre PC
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <div class="input-group mb-3">
@@ -208,15 +222,17 @@
                 </div>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01" name="chemin"  [(ngModel)] ="this.url.chemin" >
+                    aria-describedby="inputGroupFileAddon01" name="chemin" [(ngModel)]="this.url.chemin">
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
               </div>
 
               <div>
-                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueFichier()" *ngIf="!this.generate">Chiffrement SymetriqueFichier</button>
+                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueFichier()"
+                  *ngIf="!this.generate">Chiffrement SymetriqueFichier</button>
 
-                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueFichier()" *ngIf="this.generate">chargement..</button>
+                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueFichier()"
+                  *ngIf="this.generate">chargement..</button>
               </div>
               <br>
 
@@ -224,203 +240,244 @@
             </mat-expansion-panel>
             <br>
             <div *ngIf="this.showfilesuccess">
-            <div class="alert alert-success" role="alert">
-              votre paire de clé a bien été généré
+              <div class="alert alert-success" role="alert">
+                votre paire de clé a bien été généré
               </div>
-            </div> 
+            </div>
           </mat-accordion>
 
-          
-            
-         
-          
+
+
+
+
 
 
         </div>
 
       </mat-tab>
-      <mat-tab label="Dechiffrement"> 
+      <mat-tab label="Dechiffrement">
 
 
         <br><br>
-        <div class="col-md-6 offset-md-4" >
-            <h2>Dechiffrer un texte </h2>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  déchiffrer un message
-                </mat-panel-title>
-                <mat-panel-description>
-                  déchiffrer votre message
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  [(ngModel)]="this.messagechiffre" name="messagechiffre"></textarea>
-              </div>
-              <div *ngIf="this.checked">
-                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="!this.generate">Déchiffrement</button>
-                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="this.generate">chargement..</button>
-              </div>
-              <div *ngIf="!this.checked">
-                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="!this.generate">Déchifrement</button>
-                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()" *ngIf="this.generate">chargement..</button>
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Message Chiffré</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  [(ngModel)]="this.messagechiffre" name="messagechiffre">{{this.messagechiffre}}</textarea>
-              </div>
+        <div class="col-md-6 offset-md-4">
+          <h2>Dechiffrer un texte </h2>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                déchiffrer un message
+              </mat-panel-title>
+              <mat-panel-description>
+                déchiffrer votre message
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Message</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.messagechiffre"
+                name="messagechiffre"></textarea>
+            </div>
+            <div *ngIf="this.checked">
+              <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                *ngIf="!this.generate">Déchiffrement</button>
+              <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                *ngIf="this.generate">chargement..</button>
+            </div>
+            <div *ngIf="!this.checked">
+              <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                *ngIf="!this.generate">Déchifrement</button>
+              <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()"
+                *ngIf="this.generate">chargement..</button>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Message Chiffré</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.messagechiffre"
+                name="messagechiffre">{{this.messagechiffre}}</textarea>
+            </div>
 
-            </mat-expansion-panel>
-          </div>
+          </mat-expansion-panel>
+        </div>
 
 
 
 
       </mat-tab>
-      <mat-tab label="Signature"> 
+      <mat-tab label="Signature">
 
-        <br><br
-        >
-        <div class="col-md-6 offset-md-4 large " >
-<div class="col-md-12 color" >
-  <button type="button" class="btn color large"(click)=" loadKeys()" >Charger votre paire de cle</button>       
-</div>
-<br>
-<div *ngIf="this.showClesignatureerror" class="alert alert-danger" role="alert">
-  Il faut generer une paire de cle asymetrique pour la signature
-  </div>
-<div *ngIf="this.showClesignature">
-  <div class="alert alert-success" role="alert">
-  votre paire de clé a bien été chargée
-  </div>
-  
-  
-  <div *ngIf="this.indeterminatesignature">
-<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-  <mat-expansion-panel-header>
-    <mat-panel-title  class="text-success">
-      Voir votre clé publique
-    </mat-panel-title>
-    <mat-panel-description>
-      Utiliser la clé publique pour chiffrer les message et la clé privé pour déchiffrer
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <mat-toolbar  > <p class="col-md-2"> clepublique: <br> {{this.clepublique}}  </p>  </mat-toolbar> <br>
-  <!-- <mat-toolbar  > <p class="col-md-4"> cleprive: <br> {{this.cleprive}}  </p>  </mat-toolbar> <br> -->
-
-  <br>
-</mat-expansion-panel>
-</div>
-<br>
-<div *ngIf="this.checked">
-<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-  <mat-expansion-panel-header>
-    <mat-panel-title  class="text-success">
-      Voir votre clé privé
-    </mat-panel-title>
-    <mat-panel-description>
-    Pour le chiffrement asymétrique une seule clé est utiliseé pour le chiffrement et le Dechiffrement 
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-
-  <mat-toolbar> <p> cleprivé: {{this.cleprive}} </p>  </mat-toolbar>
-  <br>
-</mat-expansion-panel>
-</div>
-</div>
-          <br>     
-          <h2>Signer votre texte </h2>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-               
-                <mat-panel-title>
-                  algorithme de signature
-                </mat-panel-title>
-                <mat-panel-description>
-                  algorithme de hashage
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div class="row">
-                <mat-form-field>
-                  <mat-label>Algorithme de Signature</mat-label>
-                  <mat-select [(ngModel)]="this.paramsignature.signingAlgo" name="signingAlgo">
-                    <mat-option *ngFor="let food of signingAlgo" [value]="food.value">
-                      {{food.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <div class="col-md-3"></div>
-                <mat-form-field>
-                  <mat-label>Algorithme de hashage</mat-label>
-                  <mat-select [(ngModel)]="this.paramsignature.hashingAlgo" name="hashingAlgo">
-                    <mat-option *ngFor="let food of  hashingAlgo" [value]="food.value">
-                      {{food.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  [(ngModel)]="this.paramsignature.message" name="message"></textarea>
-              </div>
-              
-
-            
-              <div *ngIf="this.checked">
-                <button class="btn btn-primary  btn-block" (click)=" signerMessage()" *ngIf="!this.generate">Signature</button>
-                <button class="btn btn-success  btn-block" (click)=" signerMessage()" *ngIf="this.generate">chargement..</button>
-              </div>
-              <div *ngIf="!this.checked">
-                <button class="btn btn-primary  btn-block" (click)=" signerMessage()" *ngIf="!this.generate">Signature</button>
-                <button class="btn btn-success  btn-block" (click)=" signerMessage()" *ngIf="this.generate">chargement..</button>
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Message Signé</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  [(ngModel)]="this.messagechiffre" name="messagechiffre">{{this.messagechiffre}}</textarea>
-              </div>
-
-            </mat-expansion-panel>
-            <br>
-            <h2>Signer vos fichiers </h2>
-            <br>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Signer un fichier
-                </mat-panel-title>
-                Choisir le fichier
-                <mat-panel-description>
-                le fichier chiffre sera stocke dans votre PC
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                </div>
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01" name="chemin"  [(ngModel)] ="this.url.chemin" >
-                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
-              </div>
-
-              <div>
-                <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueFichier()" *ngIf="!this.generate">Chiffrement SymetriqueFichier</button>
-
-                <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueFichier()" *ngIf="this.generate">chargement..</button>
-              </div>
-              <br>
-
-
-            </mat-expansion-panel>
-            <br>
+        <br><br>
+        <div class="col-md-6 offset-md-4 large ">
+          <div class="col-md-12 color">
+            <button type="button" class="btn color large" (click)=" loadKeys()">Charger votre paire de cle</button>
           </div>
+          <br>
+          <div *ngIf="this.showClesignatureerror" class="alert alert-danger" role="alert">
+            Il faut generer une paire de cle asymetrique pour la signature
+          </div>
+          <div *ngIf="this.showClesignature">
+            <div class="alert alert-success" role="alert">
+              votre paire de clé a bien été chargée
+            </div>
 
-         </mat-tab>
+
+            <div *ngIf="this.indeterminatesignature">
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-success">
+                    Voir votre clé publique
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Utiliser la clé publique pour chiffrer les message et la clé privé pour déchiffrer
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-toolbar>
+                  <p class="col-md-2"> clepublique: <br> {{this.clepublique}} </p>
+                </mat-toolbar> <br>
+                <!-- <mat-toolbar  > <p class="col-md-4"> cleprive: <br> {{this.cleprive}}  </p>  </mat-toolbar> <br> -->
+
+                <br>
+              </mat-expansion-panel>
+            </div>
+            <br>
+            <div *ngIf="this.checked">
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-success">
+                    Voir votre clé privé
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Pour le chiffrement asymétrique une seule clé est utiliseé pour le chiffrement et le Dechiffrement
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-toolbar>
+                  <p> cleprivé: {{this.cleprive}} </p>
+                </mat-toolbar>
+                <br>
+              </mat-expansion-panel>
+            </div>
+          </div>
+          <br>
+          <h2>Signer votre texte </h2>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+
+              <mat-panel-title>
+                algorithme de signature
+              </mat-panel-title>
+              <mat-panel-description>
+                algorithme de hashage
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <mat-form-field>
+                <mat-label>Algorithme de Signature</mat-label>
+                <mat-select [(ngModel)]="this.paramsignature.signingAlgo" name="signingAlgo">
+                  <mat-option *ngFor="let food of signingAlgo" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="col-md-3"></div>
+              <mat-form-field>
+                <mat-label>Algorithme de hashage</mat-label>
+                <mat-select [(ngModel)]="this.paramsignature.hashingAlgo" name="hashingAlgo">
+                  <mat-option *ngFor="let food of  hashingAlgo" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Message</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                [(ngModel)]="this.paramsignature.message" name="message"></textarea>
+            </div>
+            <div *ngIf="this.iserror"class="alert alert-danger" role="alert">
+              {{this.erreur}}
+            </div>
+
+
+
+
+            <div *ngIf="this.checked">
+              <button class="btn btn-primary  btn-block" (click)=" signerMessage()"
+                *ngIf="!this.generate">Signature</button>
+              <button class="btn btn-success  btn-block" (click)=" signerMessage()"
+                *ngIf="this.generate">chargement..</button>
+            </div>
+            <div *ngIf="!this.checked">
+              <button class="btn btn-primary  btn-block" (click)=" signerMessage()"
+                *ngIf="!this.generate">Signature</button>
+              <button class="btn btn-success  btn-block" (click)=" signerMessage()"
+                *ngIf="this.generate">chargement..</button>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Message Signé</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.messagechiffre"
+                name="messagechiffre">{{this.messagechiffre}}</textarea>
+            </div>
+
+          </mat-expansion-panel>
+          <br>
+          <h2>Signer vos fichiers </h2>
+          <br>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Signer un fichier
+              </mat-panel-title>
+              Choisir le fichier
+              <mat-panel-description>
+                le fichier chiffre sera stocke dans votre PC
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <mat-form-field>
+                <mat-label>Algorithme de Signature</mat-label>
+                <mat-select [(ngModel)]="this.paramsignature.signingAlgo" name="signingAlgo">
+                  <mat-option *ngFor="let food of signingAlgo" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="col-md-3"></div>
+              <mat-form-field>
+                <mat-label>Algorithme de hashage</mat-label>
+                <mat-select [(ngModel)]="this.paramsignature.hashingAlgo" name="hashingAlgo">
+                  <mat-option *ngFor="let food of  hashingAlgo" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                  aria-describedby="inputGroupFileAddon01" name="file" [(ngModel)]="this.paramsignaturefichier.file">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+
+            <div>
+              <button class="btn btn-primary  btn-block" (click)=" SignatureDigitaleFichier()"
+                *ngIf="!this.generate">Chiffrement SymetriqueFichier</button>
+
+              <button class="btn btn-success  btn-block" (click)=" SignatureDigitaleFichier()"
+                *ngIf="this.generate">chargement..</button>
+            </div>
+            <br>
+
+
+          </mat-expansion-panel>
+          <br>
+        </div>
+
+      </mat-tab>
       <mat-tab label="Verification"> Content 4 </mat-tab>
     </mat-tab-group>
 

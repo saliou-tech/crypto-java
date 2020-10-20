@@ -30,6 +30,13 @@ export class CryptoService {
 
     return this.http.post<any>(this.baseurl + '/encrypt' , JSON.stringify(url)  , { headers: this.httpHeaders});
   }
+  ChiffrementASymetrique(url): Observable<any> {
+    // this.url = url.replace(/^.*\\/, '');
+
+    console.log( this.baseurl + '/encryptasymetrique' + JSON.stringify(url) + '/'  , { headers: this.httpHeaders} );
+
+    return this.http.post<any>(this.baseurl + '/encryptasymetrique' , JSON.stringify(url)  , { headers: this.httpHeaders});
+  }
   ChiffrementFichierSymetrique(url): Observable<any> {
     // this.url = url.replace(/^.*\\/, '');
 

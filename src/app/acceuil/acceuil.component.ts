@@ -48,6 +48,12 @@ export class AcceuilComponent implements OnInit {
     message: '',
     algorithme: this.parametre.algorithme,
   };
+  parametrechiffrementasymetrique = {
+    message: '',
+    clepriv: this.cleprive,
+    clepub:this.clepublique,
+    algorithme: this.parametre.algorithme,
+  };
   paramsignature = {
     hashingAlgo: '',
     signingAlgo: '',
@@ -294,7 +300,7 @@ export class AcceuilComponent implements OnInit {
 
         if (
           this.parametre.algorithme == 'AES' ||
-          this.parametre.algorithme == 'DES'
+          this.parametre.algorithme == 'DES'||this.parametre.algorithme=='3DES'
         ) {
           this.checked = true;
           this.cleprive = response[0];
@@ -302,11 +308,18 @@ export class AcceuilComponent implements OnInit {
           this.parametrechiffrement.algorithme = this.parametre.algorithme;
         } else if (
           this.parametre.algorithme != 'AES' &&
-          this.parametre.algorithme != 'DES'
+          this.parametre.algorithme != 'DES' &&
+          this.parametre.algorithme != '3DES'
+         
         ) {
+          this.checked=false
           this.indeterminate = true;
           this.clepublique = response[1];
+          this.parametrechiffrementasymetrique.clepub=this.clepublique
+          this.parametrechiffrementasymetrique.algorithme=this.parametre.algorithme
+          this.parametrechiffrementasymetrique.clepriv=this.cleprive
         }
+        //this.checked=false;
         this.generate = false;
         this.openSnackBar();
         this.showCle = true;
@@ -315,7 +328,7 @@ export class AcceuilComponent implements OnInit {
         console.log(response[0]);
         console.log(response[1]);
 
-        this.checked = true;
+      // this.checked = true;
         this.generate = false;
       },
       (error) => {
@@ -342,6 +355,30 @@ export class AcceuilComponent implements OnInit {
       }
     );
   }
+
+//chifrementasymetrique
+chiffrementAsymetriqueMessage() {
+  this.generate = true;
+  this.parametrechiffrementasymetrique.message=this.parametrechiffrement.message
+  console.log(this.parametrechiffrementasymetrique );
+  this.api.ChiffrementASymetrique(this.parametrechiffrementasymetrique).subscribe(
+    (response) => {
+      console.log(response);
+    },
+    (error) => {
+      console.log('error', error);
+      this.erreur = error;
+      this.messagechiffre = this.erreur.error.text;
+      this.generate = false;
+      console.log(this.messagechiffre);
+    }
+  ); 
+}
+
+
+
+
+
   chiffrementSymetriqueFichier() {
     this.generate = true;
 

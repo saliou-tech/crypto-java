@@ -18,7 +18,8 @@ export class AcceuilComponent implements OnInit {
   labelPosition: 'symetrique' | 'asymetrique' = 'asymetrique';
   cleprive: String;
   clepublique: String;
-  messagechiffre: String;
+  messagechiffre;
+  messagedechiffre;
   erreur;
   iserror;
   message;
@@ -61,6 +62,13 @@ export class AcceuilComponent implements OnInit {
     clepriv: this.cleprive,
     message: '',
   };
+  parametredechiffrement={
+    algorithme:this.parametre.algorithme,
+    clepriv:this.cleprive,
+    textCipher:''
+
+
+  }
 
   paramsignaturefichier = {
     hashingAlgo: '',
@@ -133,6 +141,12 @@ export class AcceuilComponent implements OnInit {
       taille: '',
       file: '',
     };
+    this.parametredechiffrement={
+      algorithme:this.parametre.algorithme,
+      clepriv:this.cleprive,
+      textCipher:''
+
+    }
 
     // this.checked = this.ModeChiffrementS()
     // this.indeterminate =  this.ModeChiffrementA()
@@ -373,6 +387,28 @@ chiffrementAsymetriqueMessage() {
       console.log(this.messagechiffre);
     }
   ); 
+}
+
+
+//dechifrement du Message
+dechiffrementMessage(){
+  this.parametredechiffrement.textCipher=this.messagechiffre
+  this.parametredechiffrement.algorithme=this.parametre.algorithme
+  this.parametredechiffrement.clepriv=this.cleprive
+  console.log(this.parametredechiffrement)
+  this.api.DechiffrementMessage(this.parametredechiffrement).subscribe(
+    (response) => {
+      console.log(response);
+    },
+    (error) => {
+      console.log('error', error);
+      this.erreur = error;
+      this.messagedechiffre = this.erreur.error.text;
+      this.generate = false;
+      console.log(this.messagedechiffre);
+    }
+  );
+
 }
 
 

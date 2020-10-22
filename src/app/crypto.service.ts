@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CryptoService {
-  baseurl= "https://apicryptojava.herokuapp.com/api";
- //baseurl = 'http://localhost:8080/api';
+ // baseurl= "https://apicryptojava.herokuapp.com/api";
+baseurl = 'http://localhost:8080/api';
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'  });
 
   constructor(private http: HttpClient) { }
@@ -60,6 +60,15 @@ export class CryptoService {
     console.log( this.baseurl + '/signaturefichier' + JSON.stringify(url) + '/'  , { headers: this.httpHeaders} );
 
     return this.http.post<any>(this.baseurl + '/signaturefichier' , JSON.stringify(url)  , { headers: this.httpHeaders});
+  }
+
+
+  DechiffrementMessage(url): Observable<any> {
+    // this.url = url.replace(/^.*\\/, '');
+
+    console.log( this.baseurl + '/dechiffrer' + JSON.stringify(url) + '/'  , { headers: this.httpHeaders} );
+
+    return this.http.post<any>(this.baseurl + '/dechiffrer' , JSON.stringify(url)  , { headers: this.httpHeaders});
   }
 
 

@@ -276,22 +276,22 @@
                 name="messagechiffre"></textarea>
             </div>
             <div *ngIf="this.checked">
-              <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()"
+              <button class="btn btn-primary  btn-block" (click)=" dechiffrementMessage()"
                 *ngIf="!this.generate">Déchiffrement</button>
-              <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()"
+              <button class="btn btn-success  btn-block" (click)=" dechiffrementMessage()"
                 *ngIf="this.generate">chargement..</button>
             </div>
             <div *ngIf="!this.checked">
-              <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueMessage()"
+              <button class="btn btn-primary  btn-block" (click)=" dechiffrementMessage()"
                 *ngIf="!this.generate">Déchifrement</button>
-              <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueMessage()"
+              <button class="btn btn-success  btn-block" (click)=" dechiffrementMessage()"
                 *ngIf="this.generate">chargement..</button>
             </div>
             <br>
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Message Chiffré</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.messagechiffre"
-                name="messagechiffre">{{this.messagechiffre}}</textarea>
+              <label for="exampleFormControlTextarea1">Message dechiffré</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.messagedechiffre"
+                name="this.messagedechiffre">{{this.messagedechiffre}}</textarea>
             </div>
 
           </mat-expansion-panel>

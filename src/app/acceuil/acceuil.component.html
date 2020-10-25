@@ -227,11 +227,18 @@
                 </div>
               </div>
 
-              <div>
+              <div *ngIf="this.checked">
                 <button class="btn btn-primary  btn-block" (click)=" chiffrementSymetriqueFichier()"
-                  *ngIf="!this.generate">Chiffrement SymetriqueFichier</button>
+                  *ngIf="!this.generate">Chiffrement symetriqueFichier</button>
 
                 <button class="btn btn-success  btn-block" (click)=" chiffrementSymetriqueFichier()"
+                  *ngIf="this.generate">chargement..</button>
+              </div>
+              <div *ngIf="!this.checked">
+                <button class="btn btn-primary  btn-block" (click)=" chiffrementASymetriqueFichier()"
+                  *ngIf="!this.generate">Chiffrement asymetriqueFichier</button>
+
+                <button class="btn btn-success  btn-block" (click)=" chiffrementASymetriqueFichier()"
                   *ngIf="this.generate">chargement..</button>
               </div>
               <br>

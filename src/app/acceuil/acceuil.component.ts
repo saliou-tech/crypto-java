@@ -16,7 +16,7 @@ export class AcceuilComponent implements OnInit {
   indeterminate = false;
   showClesignatureerror = false;
   labelPosition: 'symetrique' | 'asymetrique' = 'asymetrique';
-  cleprive: String;
+  cleprive;
   clepublique: String;
   messagechiffre;
   messagedechiffre;
@@ -38,7 +38,12 @@ export class AcceuilComponent implements OnInit {
     algorithme: '',
     file: '',
   };
+paremetresFichierAsy={
+  algorithme:'' ,
+  file:'',
+  clepriv:''
 
+}
   parametre = {
     algorithme: '',
     provider: '',
@@ -343,7 +348,7 @@ export class AcceuilComponent implements OnInit {
         console.log(response[1]);
 
       // this.checked = true;
-        this.generate = false;
+      //  this.generate = false;
       },
       (error) => {
         console.log('error', error);
@@ -413,10 +418,36 @@ dechiffrementMessage(){
 
 
 
+chiffrementASymetriqueFichier(){
+  this.generate = true
+  this.paremetresFichierAsy = {
+    algorithme:this.parametre.algorithme,
+    file:this.url.chemin,
+    clepriv:this.cleprive
 
+  }
+  console.log(this.paremetresFichierAsy );
+    this.api. ChiffrementFichierAsymetrique(this.paremetresFichierAsy).subscribe(
+      (response) => {
+        this.showfilesuccess = true;
+
+        console.log(response);
+      },
+      (error) => {
+        this.generate = false;
+
+        console.log('error', error);
+        this.erreur = error;
+
+        this.messagechiffre = this.erreur.error.text;
+        console.log(this.messagechiffre);
+        this.openSnackBar2();
+      }
+    );
+}
 
   chiffrementSymetriqueFichier() {
-    this.generate = true;
+    this.generate = true
 
     this.params = {
       taille: this.parametre.taille,

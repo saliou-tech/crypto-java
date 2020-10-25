@@ -44,6 +44,13 @@ baseurl= "https://apicryptojava.herokuapp.com/api";
 
     return this.http.post<any>(this.baseurl + '/encryptfile' , JSON.stringify(url)  , { headers: this.httpHeaders});
   }
+  ChiffrementFichierAsymetrique(url): Observable<any> {
+    // this.url = url.replace(/^.*\\/, '');
+
+    console.log( this.baseurl + '/encryptasymetriquefile' + JSON.stringify(url) + '/'  , { headers: this.httpHeaders} );
+
+    return this.http.post<any>(this.baseurl + '/encryptasymetriquefile' , JSON.stringify(url)  , { headers: this.httpHeaders});
+  }
 
 
   signatureDigitaleMessage(url): Observable<any> {

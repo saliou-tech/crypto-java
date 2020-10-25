@@ -20,6 +20,7 @@ export class AcceuilComponent implements OnInit {
   clepublique: String;
   messagechiffre;
   messagedechiffre;
+  messagesigne;
   erreur;
   iserror;
   message;
@@ -41,7 +42,7 @@ export class AcceuilComponent implements OnInit {
 paremetresFichierAsy={
   algorithme:'' ,
   file:'',
-  clepriv:''
+  taille:''
 
 }
   parametre = {
@@ -423,7 +424,7 @@ chiffrementASymetriqueFichier(){
   this.paremetresFichierAsy = {
     algorithme:this.parametre.algorithme,
     file:this.url.chemin,
-    clepriv:this.cleprive
+    taille:this.parametre.taille
 
   }
   console.log(this.paremetresFichierAsy );
@@ -512,8 +513,8 @@ chiffrementASymetriqueFichier(){
         if (error.status == 200) {
           this.iserror = false;
 
-          this.messagechiffre = error.error.text;
-          console.log(this.messagechiffre);
+          this.messagesigne= error.error.text;
+          console.log(this.messagesigne);
           this.openSnackBar3();
         }
       }

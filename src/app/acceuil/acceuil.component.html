@@ -421,8 +421,8 @@
             <br>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Message Signé</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.messagechiffre"
-                name="messagechiffre">{{this.messagechiffre}}</textarea>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="this.messagesigne"
+                name="messagesigne">{{this.messagesigne}}</textarea>
             </div>
 
           </mat-expansion-panel>
@@ -472,7 +472,7 @@
 
             <div>
               <button class="btn btn-primary  btn-block" (click)=" SignatureDigitaleFichier()"
-                *ngIf="!this.generate">Chiffrement SymetriqueFichier</button>
+                *ngIf="!this.generate">Signature Digitale Fichier</button>
 
               <button class="btn btn-success  btn-block" (click)=" SignatureDigitaleFichier()"
                 *ngIf="this.generate">chargement..</button>
@@ -485,7 +485,14 @@
         </div>
 
       </mat-tab>
-      <mat-tab label="Verification"> Content 4 </mat-tab>
+      <mat-tab label="Verification"> 
+        <br>
+
+        <div class="col-md-6 ">
+          <br>
+          <h1 class="text-center">Coming Soon .....</h1>
+        </div>
+         </mat-tab>
     </mat-tab-group>
 
   </div>
